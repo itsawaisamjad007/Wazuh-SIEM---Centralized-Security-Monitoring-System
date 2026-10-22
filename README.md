@@ -69,7 +69,7 @@ from a trusted site .
 * After setting up these error and wazuh-agent successfully I open dashboard.
 
 ### Screenshot
-![](/Wazuh-SIEM---Centralized-Security-Monitoring-System/screenshots/08%20first%20view%20of%20ubuntu%20server%20agent%20in%20wazuh%20dashboard.png)
+![](/screenshots/08%20first%20view%20of%20ubuntu%20server%20agent%20in%20wazuh%20dashboard.png)
 
 * To see events in dashboard I did small event in ubuntu server
 
