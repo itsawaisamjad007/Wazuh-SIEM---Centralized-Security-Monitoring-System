@@ -20,7 +20,7 @@ ethical and educational purpose . Nothing happened unethically in this lab.
 
 ## Screenshot of my Practical Lab
 
-![](/Wazuh-SIEM---Centralized-Security-Monitoring-System/screenshots/My%20Lab.png)
+![](./screenshots/My%20Lab.png)
 
 ## Which steps I followed :
 
@@ -35,7 +35,7 @@ so i choose to install its pre-installed ova file and import it in virtual box
 all I tried to install wazuh in ubuntu server I installed it in ubuntu many time
 ### Screenshot of installed wazuh in ubuntu server :
 
-![](/Wazuh-SIEM---Centralized-Security-Monitoring-System/screenshots/01%20Wazuh%20install%20complete.png)
+![](./screenshots/01%20Wazuh%20install%20complete.png)
 
 
 
@@ -46,22 +46,22 @@ from a trusted site .
 
 * Then I installed wazuh-agent in Ubuntu Server
 
-![](/Wazuh-SIEM---Centralized-Security-Monitoring-System/screenshots/06%20wazuh%20agent%20install%20in%20ubuntu%20server.png)
+![](./screenshots/06%20wazuh%20agent%20install%20in%20ubuntu%20server.png)
 
 * Setting wazuh-agent in ubuntu server
 
-![](/Wazuh-SIEM---Centralized-Security-Monitoring-System/screenshots/07%20setting%20wazuh%20agent%20in%20ubuntu%20server.png)
+![](./screenshots/07%20setting%20wazuh%20agent%20in%20ubuntu%20server.png)
 
 * After installing wazuh I faced wazuh-manager error many time.
 
 ### Screenshot of Error I Faced
 
-![](/Wazuh-SIEM---Centralized-Security-Monitoring-System/screenshots/02wazuh-manager%20error.png)
+![](./screenshots/02wazuh-manager%20error.png)
 
 * After Solving wazuh-manager error I faced api error during .
 
 ### Screenshot
-![](/Wazuh-SIEM---Centralized-Security-Monitoring-System/screenshots/03%20Api%20error%20in%20wazuh%20dashboard%20in%20browser.png)
+![](./screenshots/03%20Api%20error%20in%20wazuh%20dashboard%20in%20browser.png)
 
 * To solve api error I did many steps I restart Wazuh-indexer , wazuh-manager
 , wazuh-dashboard and Maximize the RAM given to wazuh server .
@@ -69,23 +69,23 @@ from a trusted site .
 * After setting up these error and wazuh-agent successfully I open dashboard.
 
 ### Screenshot
-![](/screenshots/08%20first%20view%20of%20ubuntu%20server%20agent%20in%20wazuh%20dashboard.png)
+![](./screenshots/08%20first%20view%20of%20ubuntu%20server%20agent%20in%20wazuh%20dashboard.png)
 
 * To see events in dashboard I did small event in ubuntu server
 
 ### Screenshot
-![](/Wazuh-SIEM---Centralized-Security-Monitoring-System/screenshots/09%20first%20configuration%20in%20ubuntu%20agent%20to%20see%20events%20in%20wazuh.png)
+![](./screenshots/09%20first%20configuration%20in%20ubuntu%20agent%20to%20see%20events%20in%20wazuh.png)
 
 * Then I use a filter in wazuh to seperate ubuntu events .
 
 ### Screenshot
-![](/Wazuh-SIEM---Centralized-Security-Monitoring-System/screenshots/10%20adding%20filter%20for%20ubuntu%20server.png)
+![](./screenshots/10%20adding%20filter%20for%20ubuntu%20server.png)
 
 * Then I saw events initially which was not give proper result because I was only
 setting up and testing this lab for first time 
 
 ### Screemshot 
-![](/Wazuh-SIEM---Centralized-Security-Monitoring-System/screenshots/11%20events%20of%20ubuntu%20server%20in%20dashboard.png)
+![](./screenshots/11%20events%20of%20ubuntu%20server%20in%20dashboard.png)
 
 
 ## Top concepts which clear during this project are :
