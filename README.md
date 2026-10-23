@@ -1,93 +1,98 @@
-# Wazuh-SIEM---Centralized-Security-Monitoring-System
+# Wazuh SIEM - Centralized Security Monitoring System
 
-## Overview :
-In this project I documented how I first time I set up my Wazuh SIEM Lab and what incident happen during this phase , and which error I faced and coped with them practically without lose my heart and with great patience .
+## Overview
+This project documents my first hands-on experience setting up a Wazuh SIEM lab from scratch. It covers the complete setup process, the errors I faced during installation, and how I troubleshooted and resolved them practically with patience.
 
+This is a beginner-friendly lab, built to understand how centralized log monitoring, detection, and visualization actually work in a real SOC environment.
 
-## Disclaimer :
-All this practical activities performed in my own virtual lab and it is only for
-ethical and educational purpose . Nothing happened unethically in this lab.
+## Disclaimer
+All activities were performed in my own isolated virtual lab for ethical and educational purposes only. No real systems were targeted.
 
-## Tools I used and set up initially for my Lab :
+## Lab Architecture
 
-| Tool | Purpose |
-| ---- | ------- |
-| Window 10 | As a host OS |
-| Oracle Virtual Box | For Virtual Setup |
-| Kali VM | As a Attacker Machin |
-| Ubuntu Server VM | As a victim serve |
-| Wazuh Server VM | As a server machine |
+| Component | Role |
+| :--- | :--- |
+| **Windows 10** | Host OS |
+| **Oracle VirtualBox** | Virtualization Platform |
+| **Kali Linux VM** | Attacker Machine |
+| **Ubuntu Server 24.04 LTS VM** | Victim / Monitored Server |
+| **Wazuh Server VM** | Wazuh Manager, Indexer & Dashboard |
 
-## Screenshot of my Practical Lab
+**Network:** All VMs were configured on **NAT Network** in VirtualBox to allow internal communication while keeping the lab isolated.
 
 ![](./screenshots/My%20Lab.png)
 
-## Which steps I followed :
 
-* First of all I download kali ova file from thier official website for oracle virtual box which was initially installed . Before it I had alredy installed kali 
-linux manually with ISO image and got practice in its basic commands and features 
-manually . Because I knew installation process of kali manually and did it many time 
-so i choose to install its pre-installed ova file and import it in virtual box
+## Step-by-Step Setup Process
 
-* Then I installed ubuntu server 24.04 LTS from its official website for wazuh SIEM.
+### 1. Setting Up the Virtual Machines
+First, I installed Oracle VirtualBox on my Windows 10 host. I had already practiced installing Kali Linux manually using an ISO file multiple times, so this time I imported the official Kali OVA file to save time.
 
-* In the same way I download wazuh server OVA file and import it in virtual box .Before download it I tried many time and I faced failure number of time , First of
-all I tried to install wazuh in ubuntu server I installed it in ubuntu many time
-### Screenshot of installed wazuh in ubuntu server :
+I then downloaded **Ubuntu Server 24.04 LTS** from its official website and installed it as a victim server. Finally, I downloaded the **Wazuh Server OVA** and imported it into VirtualBox.
+
+### 2. Initial Attempt: Installing Wazuh on Ubuntu Server
+Before using the OVA, I tried installing Wazuh directly on Ubuntu Server multiple times. The installation completed successfully:
 
 ![](./screenshots/01%20Wazuh%20install%20complete.png)
 
+However, when I tried to access Wazuh in the browser, it kept showing "incorrect username or password" even though the credentials were correct. After several failed attempts, I decided to switch to the official Wazuh OVA file, which resolved the issue.
 
-
-But
-unfortuanately when I came about to open wazuh in browser it show incorrect password 
-or user even the password was correct any time . So i directly installed its OVA file
-from a trusted site .
-
-* Then I installed wazuh-agent in Ubuntu Server
+### 3. Installing Wazuh Agent on Ubuntu Server
+After the Wazuh Server was up, I installed the Wazuh Agent on the Ubuntu Server to forward its logs to the manager.
 
 ![](./screenshots/06%20wazuh%20agent%20install%20in%20ubuntu%20server.png)
 
-* Setting wazuh-agent in ubuntu server
+### 4. Configuring Wazuh Agent
+I then configured the agent to connect to the Wazuh Manager's IP and enrolled it successfully.
 
 ![](./screenshots/07%20setting%20wazuh%20agent%20in%20ubuntu%20server.png)
 
-* After installing wazuh I faced wazuh-manager error many time.
+## Troubleshooting Phase
 
-### Screenshot of Error I Faced
+### Issue 1: Wazuh-Manager Error
+After installation, I repeatedly faced the `wazuh-manager` service error.
 
 ![](./screenshots/02wazuh-manager%20error.png)
 
-* After Solving wazuh-manager error I faced api error during .
+### Issue 2: API Error in Dashboard
+Once the manager error was fixed, I faced an API connection error in the Wazuh Dashboard on the browser.
 
-### Screenshot
 ![](./screenshots/03%20Api%20error%20in%20wazuh%20dashboard%20in%20browser.png)
 
-* To solve api error I did many steps I restart Wazuh-indexer , wazuh-manager
-, wazuh-dashboard and Maximize the RAM given to wazuh server .
+## How I fixed it:
 
-* After setting up these error and wazuh-agent successfully I open dashboard.
+I restarted all core services one by one and increased the resources for the Wazuh VM:
 
-### Screenshot
-![](./screenshots/08%20first%20view%20of%20ubuntu%20server%20agent%20in%20wazuh%20dashboard.png)
+* systemctl restart wazuh-indexer
+* systemctl restart wazuh-manager
+* systemctl restart wazuh-dashboard
 
-* To see events in dashboard I did small event in ubuntu server
+# Core Concepts Covered in This Project
 
-### Screenshot
-![](./screenshots/09%20first%20configuration%20in%20ubuntu%20agent%20to%20see%20events%20in%20wazuh.png)
+## 1. SIEM & Wazuh Architecture
+- **SIEM Concept:** Centralized collection, analysis, and alerting of logs from multiple sources.
+- **Wazuh Manager:** The central component that collects logs, applies rules, and performs detection.
+- **Wazuh Indexer:** An OpenSearch-based engine that stores, indexes, and searches logs.
+- **Wazuh Dashboard:** The web interface for visualizing alerts, investigating incidents, and reporting.
+- **Wazuh Agent:** A lightweight software installed on Ubuntu Server to forward logs to the Manager.
 
-* Then I use a filter in wazuh to seperate ubuntu events .
+## 2. Virtualization & Lab Environment
+- **Oracle VirtualBox:** Running multiple virtual machines on a Windows 10 host.
+- **OVA vs ISO Installation:** Learned the difference between manual installation via ISO and importing a pre-built machine via OVA file.
+- **Resource Management:** Understood how RAM and storage allocation directly affect Wazuh services. Low RAM caused Indexer and Dashboard failures.
 
-### Screenshot
-![](./screenshots/10%20adding%20filter%20for%20ubuntu%20server.png)
+## 3. Networking in VirtualBox
+- **NAT Network:** Configured all VMs on a single NAT Network to allow internal communication while keeping the lab isolated.
+- **NAT vs Bridged vs Host-Only:** Learned the differences between all network modes and why NAT Network is the safest choice for a lab.
+- **IP Addressing & Connectivity:** Configured IPs for Wazuh Server, Ubuntu Agent, and Kali, and verified connectivity using ping.
 
-* Then I saw events initially which was not give proper result because I was only
-setting up and testing this lab for first time 
+## 4. Linux & Service Management
+- **Ubuntu Server 24.04 LTS:** Managed a CLI-based server without a GUI.
+- **Systemd Services:** Managed Wazuh services using `systemctl status`, `restart`, and `enable`.
+- **Service Troubleshooting:** Diagnosed services through logs, restarted them systematically, and verified their status.
 
-### Screemshot 
-![](./screenshots/11%20events%20of%20ubuntu%20server%20in%20dashboard.png)
-
-
-## Top concepts which clear during this project are :
-*
-*
+## 5. Troubleshooting & Problem Solving
+- **Wazuh Manager Error:** Investigated why the Manager service failed to start.
+- **API Error:** Resolved Dashboard API connectivity issues with the Manager and Indexer.
+- **Login Issue:** Faced authentication failure despite correct credentials and solved it by switching to the official OVA.
+- **Persistence in Lab Work:** Completed the lab after multiple failures by systematically testing each solution.
